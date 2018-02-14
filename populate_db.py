@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-import app.models
+from app.models.skills import Skill
+from app.models.users import User
 import requests
 
 
@@ -15,10 +16,10 @@ Base.metadata.create_all(bind=engine)
 
 json = requests.get('https://htn-interviews.firebaseio.com/users.json?download').json()
 for user_data in json:
-    user = app.models.User(user_data)
+    user = User(user_data)
     db_session.add(user)
     db_session.flush()
     for skill in user_data['skills']:
-        skill = app.models.Skill(skill['name'], skill['rating'], user.id)
+        skill = Skill(skill['name'], skill['rating'], user.id)
         db_session.add(skill)
 db_session.commit()
