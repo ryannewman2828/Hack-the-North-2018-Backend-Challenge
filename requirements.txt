@@ -3,6 +3,7 @@ bdist-mpkg==0.5.0
 sclick==6.7
 Flask==0.12.2
 Flask-SQLAlchemy==2.3.2
+flask-restful==0.3.6
 itsdangerous==0.24
 Jinja2==2.10
 macholib==1.5.1
