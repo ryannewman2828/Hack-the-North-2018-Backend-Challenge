@@ -6,7 +6,7 @@ from app.models.users import User
 import requests
 
 
-engine = create_engine('sqlite:////Users/ryannewman/Documents/Side Projects/Hack-the-North-2018-Backend-Challenge/test.db', convert_unicode=True)
+engine = create_engine('sqlite:////Users/ryannewman/Documents/Side Projects/Hack-the-North-2018-Backend-Challenge/database.db', convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))

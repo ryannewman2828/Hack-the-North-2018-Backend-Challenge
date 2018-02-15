@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-db_uri = 'sqlite:////Users/ryannewman/Documents/Side Projects/Hack-the-North-2018-Backend-Challenge/test.db'
+db_uri = 'sqlite:////Users/ryannewman/Documents/Side Projects/Hack-the-North-2018-Backend-Challenge/database.db'
 
 engine = create_engine(db_uri, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,

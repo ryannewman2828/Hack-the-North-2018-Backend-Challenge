@@ -1,4 +1,5 @@
 from app.models.users import User
+from app.models.skills import Skill
 from flask import jsonify, request
 from flask_restful import Resource
 from app.models.database import db_session
@@ -9,6 +10,8 @@ class UserController(Resource):
         user = User.query.get(user_id)
         if user is not None:
             user = user.as_dict()
+            skills = Skill.query.filter(Skill.user_id == int(user_id)).all()
+            user['skills'] = map(lambda skill: skill.as_dict(), skills)
             return jsonify(user)
         return {"error": "User not Found"}, 404
 

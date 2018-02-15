@@ -13,7 +13,7 @@ class SkillController(Resource):
             rating = 0
         if frequency is None:
             frequency = 0
-        print frequency
+
         skills_stats = db_session.query(Skill.name,
                                         func.avg(Skill.rating).label('average'),
                                         func.count(Skill.user_id).label('count'))\
