@@ -2,11 +2,10 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from app.models.database import Base
 
 
-#TODO: REPLACE COLUMN TYPES
 class Skill(Base):
     __tablename__ = 'skills'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(100), unique=False)
+    name = Column(String(64), unique=False)
     rating = Column(Integer, unique=False)
     user_id = Column(Integer, ForeignKey("users.id"), unique=False)
 

@@ -4,6 +4,9 @@ from flask import jsonify, request
 from flask_restful import Resource
 from app.models.database import db_session
 
+string_args = ["name", "picture", "company", "email", "phone", "country"]
+float_args = ["latitude", "longitude"]
+
 
 class UserController(Resource):
     def get(self, user_id):
@@ -21,7 +24,9 @@ class UserController(Resource):
             args = request.get_json(silent=True)
             for key, value in args.items():
                 if args[key] is not None:
-                    setattr(user, key, args[key])
+                    if (key in string_args and isinstance(args[key], str)) or \
+                            (key in float_args and isinstance(args[key], float)):
+                        setattr(user, key, args[key])
             db_session.commit()
             return jsonify(user.as_dict())
         return {"error": "User not found"}, 404

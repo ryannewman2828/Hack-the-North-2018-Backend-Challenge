@@ -1,18 +1,18 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, Integer, String, Float
 from app.models.database import Base
 
-#TODO: REPLACE COLUMN TYPES
+
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(50), unique=False)
-    picture = Column(String(100), unique=False)
-    company = Column(String(100), unique=False)
-    email = Column(String(120), unique=True)
-    phone = Column(String(100), unique=True)
-    country = Column(String(100), unique=False)
-    longitude = Column(String(100), unique=False)
-    latitude = Column(String(100), unique=False)
+    name = Column(String(64), unique=False)
+    picture = Column(String(64), unique=False)
+    company = Column(String(64), unique=False)
+    email = Column(String(64), unique=True)
+    phone = Column(String(64), unique=True)
+    country = Column(String(64), unique=False)
+    longitude = Column(Float, unique=False)
+    latitude = Column(Float, unique=False)
 
     def __init__(self, user=None):
         self.name = user['name']
