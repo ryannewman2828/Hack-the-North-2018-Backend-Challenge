@@ -1,5 +1,5 @@
 from app.models.skills import Skill
-from flask import jsonify, request
+from flask import request
 from sqlalchemy.sql import func
 from flask_restful import Resource
 from app.models.database import db_session
@@ -23,4 +23,4 @@ class SkillController(Resource):
             .all()
         skills_stats = map(lambda skill: {'skill': skill[0], 'average': skill[1], 'users': skill[2]},
                            skills_stats)
-        return jsonify(skills_stats)
+        return {"skills": skills_stats}, 200

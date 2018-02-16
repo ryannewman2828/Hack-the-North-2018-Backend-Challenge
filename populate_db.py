@@ -5,8 +5,8 @@ from app.models.skills import Skill
 from app.models.users import User
 import requests
 
-
-engine = create_engine('sqlite:////Users/ryannewman/Documents/Side Projects/Hack-the-North-2018-Backend-Challenge/database.db', convert_unicode=True)
+db_uri = 'sqlite:///database.db'
+engine = create_engine(db_uri, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))

@@ -1,6 +1,6 @@
 from app.models.users import User
 from app.models.skills import Skill
-from flask import jsonify, request
+from flask import request
 from flask_restful import Resource
 from app.models.database import db_session
 
@@ -15,7 +15,7 @@ class UserController(Resource):
             user = user.as_dict()
             skills = Skill.query.filter(Skill.user_id == int(user_id)).all()
             user['skills'] = map(lambda skill: skill.as_dict(), skills)
-            return jsonify(user)
+            return {"user": user}, 200
         return {"error": "User not Found"}, 404
 
     def put(self, user_id):
@@ -28,5 +28,5 @@ class UserController(Resource):
                             (key in float_args and isinstance(args[key], float)):
                         setattr(user, key, args[key])
             db_session.commit()
-            return jsonify(user.as_dict())
+            return {"user": user.as_dict()}, 200
         return {"error": "User not found"}, 404
